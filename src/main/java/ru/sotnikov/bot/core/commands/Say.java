@@ -11,7 +11,7 @@ public class Say {
     public String sayAttack(String name)
     {
         if(name.startsWith("[")&&name.endsWith("]")&&name.contains("@")&&name.contains("id")&&!name.contains(" "))
-            return "уебал " + name;
+            return "уебал" + name;
         else return "Цель не найдена";
     }
     public String sayBite(){
@@ -19,7 +19,13 @@ public class Say {
     }
     public String sayBite(String name){
         if(name.startsWith("[")&&name.endsWith("]")&&name.contains("@")&&name.contains("id")&&!name.contains(" "))
-            return "искусал всего " + name;
+            return "искусал всего" + name;
+        else return "Цель не найдена";
+    }
+    public String sayTrax(String name)
+    {
+        if(name.startsWith("[")&&name.endsWith("]")&&name.contains("@")&&name.contains("id")&&!name.contains(" "))
+            return "Надругался" + name;
         else return "Цель не найдена";
     }
     public String sayHome(){

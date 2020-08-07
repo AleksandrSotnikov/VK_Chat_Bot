@@ -49,7 +49,7 @@ public class Starter{
             if (event.getMessage().getText().toLowerCase().startsWith("!репорт")){
                 new Message()
                         .peerId(2000000004)
-                        .text( "@" + "id" + event.getMessage().getFromId() + "(Баянщик), " +event.getMessage().getText())
+                        .text( "@" + "id" + event.getMessage().getFromId() + "(Чёрт), " +event.getMessage().getText())
                         .sendFrom(vkApiClient)
                         .execute();
                 return;

@@ -64,6 +64,13 @@ public class MsgCheck {
                     response = "Кусать себя не самая лучшая идея";
                 }
                 break;
+            case "трахнуть":
+                try {
+                    response = !secondUser? new Say().sayTrax(text[1]):new Say().sayTrax().concat(" ").concat(name2);
+                }catch (ArrayIndexOutOfBoundsException e){
+                    response = "Ну не надо же себя";
+                }
+                break;
             case "название":
                 if (message.getMessage().getPeerId() == message.getMessage().getFromId()) response = "Вы не можете изменить название сообщества с ботом";
                 else  response = new ReName(getVkApiClient()).newName(fullText,message.getMessage().getPeerId());
@@ -103,6 +110,7 @@ public class MsgCheck {
         command.add("уебать");
         command.add("укусить");
         command.add("название");
+        command.add("трахнуть");
     }
 
 }
