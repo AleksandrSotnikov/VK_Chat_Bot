@@ -30,7 +30,7 @@ public class Starter{
                  Parameters.of("lang", "ru"), 3);
 
         final VkApiClient vkApiClient = new VkApiClient(clientId, accessToken, VkApiClient.Type.Community, vkSettings);
-        vkApiClient.call("messages.pin", Parameters.of("peer_id",String.valueOf(2000000004),"message_id",String.valueOf(3628713)), false, new Callback<JsonElement>() {
+        /*vkApiClient.call("messages.pin", Parameters.of("peer_id",String.valueOf(2000000004),"message_id",String.valueOf(3628713)), false, new Callback<JsonElement>() {
             @Override
             public void onResult(@NotNull JsonElement jsonElement) {
                 System.out.println(jsonElement);
@@ -40,7 +40,7 @@ public class Starter{
             public void onError(@NotNull Exception e) {
 
             }
-        });
+        });*/
 
         // Woo-hoo! SAM! As you can see, callbacks are more pretty in Java.
         vkApiClient.onMessage(event -> {
@@ -67,7 +67,7 @@ public class Starter{
                     @Override
                     public void onResult(@NotNull final JsonElement jsonElement) {
                         MsgCheck msgCheck = new MsgCheck(event,vkApiClient);
-                        String name = "";
+                        String name;
                         String name2 = "";
                         try {
                             name = new Gson().fromJson(String.valueOf(jsonElement), Users.class)
@@ -100,18 +100,15 @@ public class Starter{
 
                 });
             }catch (NullPointerException e){
-
+                e.getStackTrace();
             }
         });
         vkApiClient.startLongPolling();
     }
 
     public static void main(String[] args) {
-        final int groupId = group_id;
-        final String groupAccessToken = access_token;
-
         final Starter bot = new Starter();
-        bot.start(groupId, groupAccessToken);
+        bot.start(group_id, access_token);
     }
 
 

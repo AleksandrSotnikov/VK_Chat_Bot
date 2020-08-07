@@ -1,2 +1,0 @@
-# javabots
-VK - java bots 
