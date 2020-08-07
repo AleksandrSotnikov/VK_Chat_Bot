@@ -19,7 +19,7 @@ import ru.sotnikov.bot.core.help.Users;
 public class Starter{
 
     public static final String access_token = "7b9d794cab8017af2a6d2003da20e28abe26e3c83dd50be3ea2f3a91a7ef2cb9d72a9f63dc3067314ae9d";
-    public static final int group_id = 197613406;
+    public static final int group_id = 197613406;//Тест
 
     public void start(final int clientId, @NotNull final String accessToken) {
         if (accessToken.equals("fff")) throw new RuntimeException("Please, replace dummy access_token with yours in Launcher.kt");

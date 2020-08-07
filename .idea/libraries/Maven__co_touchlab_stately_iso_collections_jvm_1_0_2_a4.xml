@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: co.touchlab:stately-iso-collections-jvm:1.0.2-a4">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/co/touchlab/stately-iso-collections-jvm/1.0.2-a4/stately-iso-collections-jvm-1.0.2-a4.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/co/touchlab/stately-iso-collections-jvm/1.0.2-a4/stately-iso-collections-jvm-1.0.2-a4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/co/touchlab/stately-iso-collections-jvm/1.0.2-a4/stately-iso-collections-jvm-1.0.2-a4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
