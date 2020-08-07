@@ -12,7 +12,7 @@ public class CourseBitcoin {
             course = new CourseBitcoinParser().getCourseOnline();
             course = "Текущий курс биткоина - " + course + "$";
         } catch (IOException e) {
-            course = "Не удалось получить курс";
+            course = "Не удалось получить текущий курс";
         }
 
         return course;
