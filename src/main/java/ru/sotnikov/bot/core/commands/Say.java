@@ -22,6 +22,7 @@ public class Say {
             return "искусал всего" + name;
         else return "Цель не найдена";
     }
+    public String sayTrax() {return "Трахнул ";}
     public String sayTrax(String name)
     {
         if(name.startsWith("[")&&name.endsWith("]")&&name.contains("@")&&name.contains("id")&&!name.contains(" "))
