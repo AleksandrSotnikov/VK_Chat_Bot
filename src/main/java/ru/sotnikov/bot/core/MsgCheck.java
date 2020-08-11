@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class MsgCheck {
     private static MessageNew message = null;
-    private static ArrayList<String> command = new ArrayList<String>();
+    private static ArrayList<String> command = new ArrayList<>();
     private static VkApiClient vkApiClient = null;
 
     public MsgCheck(MessageNew message, VkApiClient vkApiClient) {
@@ -66,7 +66,7 @@ public class MsgCheck {
                 break;
             case "трахнуть":
                 try {
-                    response = !secondUser? new Say().sayTrax(text[1]):new Say().sayTrax().concat(" ").concat(name2);
+                    response = !secondUser? new Say().saySex(text[1]):new Say().saySex().concat(" ").concat(name2);
                 }catch (ArrayIndexOutOfBoundsException e){
                     response = "Ну не надо же себя";
                 }

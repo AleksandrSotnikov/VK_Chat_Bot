@@ -1,6 +1,5 @@
 package ru.sotnikov.bot.core.help;
 
-
 public class Response {
 
     private Integer id;

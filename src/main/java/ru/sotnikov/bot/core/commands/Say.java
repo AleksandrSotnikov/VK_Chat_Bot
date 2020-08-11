@@ -10,24 +10,21 @@ public class Say {
     public String sayAttack() {return "уебал ";}
     public String sayAttack(String name)
     {
-        if(name.startsWith("[")&&name.endsWith("]")&&name.contains("@")&&name.contains("id")&&!name.contains(" "))
-            return "уебал" + name;
-        else return "Цель не найдена";
+        if(name.startsWith("[")&&name.endsWith("]")&&name.contains("@")&&name.contains("id")&&!name.contains(" ")) return "уебал" + name;
+        return "Цель не найдена";
     }
     public String sayBite(){
         return "укусил ";
     }
     public String sayBite(String name){
-        if(name.startsWith("[")&&name.endsWith("]")&&name.contains("@")&&name.contains("id")&&!name.contains(" "))
-            return "искусал всего" + name;
-        else return "Цель не найдена";
+        if(name.startsWith("[")&&name.endsWith("]")&&name.contains("@")&&name.contains("id")&&!name.contains(" ")) return "искусал всего" + name;
+        return "Цель не найдена";
     }
-    public String sayTrax() {return "Трахнул ";}
-    public String sayTrax(String name)
+    public String saySex() {return "Трахнул ";}
+    public String saySex(String name)
     {
-        if(name.startsWith("[")&&name.endsWith("]")&&name.contains("@")&&name.contains("id")&&!name.contains(" "))
-            return "Надругался" + name;
-        else return "Цель не найдена";
+        if(name.startsWith("[")&&name.endsWith("]")&&name.contains("@")&&name.contains("id")&&!name.contains(" ")) return "Надругался" + name;
+        return "Цель не найдена";
     }
     public String sayHome(){
         return " я тут, чего звал?";

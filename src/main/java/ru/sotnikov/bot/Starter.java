@@ -1,7 +1,6 @@
 package ru.sotnikov.bot;
 
 import com.google.gson.Gson;
-import com.petersamokhin.vksdk.core.api.VkApi;
 import com.petersamokhin.vksdk.core.callback.Callback;
 import com.petersamokhin.vksdk.core.client.VkApiClient;
 import com.petersamokhin.vksdk.core.http.HttpClient;
@@ -10,7 +9,6 @@ import com.petersamokhin.vksdk.core.model.VkSettings;
 import com.petersamokhin.vksdk.core.model.objects.Message;
 import com.petersamokhin.vksdk.http.VkOkHttpClient;
 import kotlinx.serialization.json.JsonElement;
-import okhttp3.OkHttpClient;
 import org.jetbrains.annotations.NotNull;
 import ru.sotnikov.bot.core.MsgCheck;
 import ru.sotnikov.bot.core.help.ReplyMessage;
@@ -42,7 +40,6 @@ public class Starter{
             }
         });*/
 
-        // Woo-hoo! SAM! As you can see, callbacks are more pretty in Java.
         vkApiClient.onMessage(event -> {
 
             System.out.println(event);
