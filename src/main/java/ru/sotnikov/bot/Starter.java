@@ -118,14 +118,16 @@ public class Starter{
     public static void loadProperties()  {
         String pathToFile = "src/main/resources/config.properties";
         Properties properties = new Properties();
+        File file  = new File(pathToFile);
+        FileWriter fileWriter;
+        BufferedReader fileReader;
         try {
             properties.load(new FileReader(pathToFile));
         } catch (FileNotFoundException e) {
             System.out.println("Не удалось найти файл config.properties");
             System.out.println("Производится создание файла...");
-            File file  = new File(pathToFile);
             try {
-                FileWriter fileWriter = new FileWriter(file);
+                fileWriter = new FileWriter(file);
                 fileWriter.write("AccessToken = Введите сюда ключ доступа группы\nGroupId = Введите сюда Id группы");
                 fileWriter.flush();
                 fileWriter.close();
@@ -143,6 +145,26 @@ public class Starter{
             GroupId = Integer.parseInt(properties.getProperty("GroupId"));
         } catch (NumberFormatException e){
             System.out.println("Ошибка конвертации в числовое значение");
+            try {
+                fileReader = new BufferedReader(new FileReader(file));
+                if(fileReader.readLine().startsWith("AccessToken")&&fileReader.readLine().startsWith("GroupId")){
+                    fileWriter = new FileWriter(file);
+                    fileWriter.write("AccessToken = Введите сюда ключ доступа группы\nGroupId = Введите сюда Id группы");
+                    fileWriter.flush();
+                    fileWriter.close();
+                }
+            } catch (NullPointerException exception) {
+                try {
+                fileWriter = new FileWriter(file);
+                fileWriter.write("AccessToken = Введите сюда ключ доступа группы\nGroupId = Введите сюда Id группы");
+                fileWriter.flush();
+                fileWriter.close();
+                } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            }catch (IOException fileNotFoundException) {
+               fileNotFoundException.printStackTrace();
+            }
             System.exit(0);
         } catch (IllegalArgumentException e){
             System.out.println("Не задан один из параметров");
