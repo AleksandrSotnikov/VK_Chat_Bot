@@ -16,10 +16,10 @@ import ru.sotnikov.bot.core.MsgCheck;
 import ru.sotnikov.bot.core.help.ReplyMessage;
 import ru.sotnikov.bot.core.help.Users;
 
-public class Starter{
+import java.io.*;
+import java.util.Properties;
 
-    public static final String access_token = "7b9d794cab8017af2a6d2003da20e28abe26e3c83dd50be3ea2f3a91a7ef2cb9d72a9f63dc3067314ae9d";
-    public static final int group_id = 197613406;//Тест
+public class Starter{
 
     public void start(final int clientId, @NotNull final String accessToken) {
         if (accessToken.equals("fff")) throw new RuntimeException("Please, replace dummy access_token with yours in Launcher.kt");
@@ -106,11 +106,47 @@ public class Starter{
         vkApiClient.startLongPolling();
     }
 
+    private static int GroupId;
+    private static String AccessToken;
+
     public static void main(String[] args) {
         final Starter bot = new Starter();
-        bot.start(group_id, access_token);
+        loadProperties();
+        bot.start(GroupId, AccessToken);
     }
 
-
-
+    public static void loadProperties()  {
+        String pathToFile = "src/main/resources/config.properties";
+        Properties properties = new Properties();
+        try {
+            properties.load(new FileReader(pathToFile));
+        } catch (FileNotFoundException e) {
+            System.out.println("Не удалось найти файл config.properties");
+            System.out.println("Производится создание файла...");
+            File file  = new File(pathToFile);
+            try {
+                FileWriter fileWriter = new FileWriter(file);
+                fileWriter.write("AccessToken = Введите сюда ключ доступа группы\nGroupId = Введите сюда Id группы");
+                fileWriter.flush();
+                fileWriter.close();
+            }catch (IOException exception){
+                exception.printStackTrace();
+                System.out.println("Возникла непредвиденная ошибка");
+            }
+            System.out.println("Создание файла config.properties завершено, заполните его нужными данными");
+            System.exit(0);
+        } catch (IOException e){
+            System.out.println("Ошибка при выполнении метода load()");
+        }
+        try {
+            AccessToken = properties.getProperty("AccessToken");
+            GroupId = Integer.parseInt(properties.getProperty("GroupId"));
+        } catch (NumberFormatException e){
+            System.out.println("Ошибка конвертации в числовое значение");
+            System.exit(0);
+        } catch (IllegalArgumentException e){
+            System.out.println("Не задан один из параметров");
+            System.exit(0);
+        }
+    }
 }
