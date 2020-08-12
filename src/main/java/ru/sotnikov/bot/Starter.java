@@ -28,17 +28,6 @@ public class Starter{
                  Parameters.of("lang", "ru"), 3);
 
         final VkApiClient vkApiClient = new VkApiClient(clientId, accessToken, VkApiClient.Type.Community, vkSettings);
-        /*vkApiClient.call("messages.pin", Parameters.of("peer_id",String.valueOf(2000000004),"message_id",String.valueOf(3628713)), false, new Callback<JsonElement>() {
-            @Override
-            public void onResult(@NotNull JsonElement jsonElement) {
-                System.out.println(jsonElement);
-            }
-
-            @Override
-            public void onError(@NotNull Exception e) {
-
-            }
-        });*/
 
         vkApiClient.onMessage(event -> {
 
