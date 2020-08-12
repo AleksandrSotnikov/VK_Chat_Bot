@@ -34,9 +34,6 @@ public class Starter{
 
         MsgCheck msgCheck = new MsgCheck();
         vkApiClient.onMessage(event -> {
-
-            System.out.println(event);
-
             if (event.getMessage().getText().toLowerCase().startsWith("!репорт")){
                 new Message()
                         .peerId(2000000004)
@@ -46,7 +43,6 @@ public class Starter{
                 return;
             }
             ReplyMessage replyMessage = new Gson().fromJson(String.valueOf(event.getMessage().component15()),ReplyMessage.class);
-            System.out.println("reply - " + replyMessage);
             String string = "";
             boolean seconduser = replyMessage!=null && event.getMessage().getFromId() != replyMessage.getFromId();
             if(!seconduser){
@@ -58,9 +54,7 @@ public class Starter{
                 vkApiClient.call("users.get", Parameters.of("user_ids",string), false, new Callback<JsonElement>() {
                     @Override
                     public void onResult(@NotNull final JsonElement jsonElement) {
-                        System.out.println(jsonElement);
                         Entity entity = new Entity();
-
                         entity.setMessage(event);
                         entity.setVkApiClient(vkApiClient);
                         User firstUser;
