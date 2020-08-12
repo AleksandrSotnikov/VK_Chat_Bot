@@ -5,6 +5,7 @@ import ru.sotnikov.bot.core.commands.CourseBitcoin;
 import ru.sotnikov.bot.core.commands.MinerKick;
 import ru.sotnikov.bot.entity.Entity;
 import ru.sotnikov.bot.entity.JailUser;
+
 import java.util.ArrayList;
 
 public class MsgCheck {
@@ -30,17 +31,21 @@ public class MsgCheck {
                     //new ReName(entity).newName();
                     break;
             case "копать":
-                   jail = new MinerKick(entity,jail).minerDefend();
+                if (entity.getPeerId() == 2000000007)
+                    jail = new MinerKick(entity, jail).minerDefend();
                     break;
             case "кейс":
-                    if(entity.getTextMessageSplit(1).equals("открыть") && entity.getTextMessageSplit(2).equals("1"))
-                        jail = new CaseKick(entity,jail).caseDefend();
+                if (entity.getPeerId() == 2000000007)
+                    if (entity.getTextMessageSplit(1).equals("открыть") && entity.getTextMessageSplit(2).equals("1"))
+                        jail = new CaseKick(entity, jail).caseDefend();
                     break;
             case "[club171493284|@gorillabot]":
+                if (entity.getPeerId() == 2000000007) {
                     if (entity.getTextMessageSplit(1).equals("⛏"))
-                        jail = new MinerKick(entity,jail).minerDefend();
-                    if(entity.getTextMessageSplit(1).equals("\uD83C\uDF81")&& entity.getTextMessage().contains("1"))
-                        jail = new CaseKick(entity,jail).caseDefend();
+                        jail = new MinerKick(entity, jail).minerDefend();
+                    if (entity.getTextMessageSplit(1).equals("\uD83C\uDF81") && entity.getTextMessage().contains("1"))
+                        jail = new CaseKick(entity, jail).caseDefend();
+                }
                     break;
         }
     }

@@ -21,6 +21,7 @@ import ru.sotnikov.bot.entity.User;
 
 import java.io.*;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class Starter{
 
@@ -32,12 +33,15 @@ public class Starter{
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(logging)
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
                 .build();
 
 
         final HttpClient httpClient = new VkOkHttpClient(okHttpClient);
 
-        //final HttpClient httpClient = new VkOkHttpClient();
+        // final HttpClient httpClient = new VkOkHttpClient();
 
         final VkSettings vkSettings = new VkSettings(httpClient, 5.122d,                // Woo-hoo! @JvmStatic
                  Parameters.of("lang", "ru"), 3);
@@ -46,10 +50,11 @@ public class Starter{
 
         MsgCheck msgCheck = new MsgCheck();
         vkApiClient.onMessage(event -> {
-            if (event.getMessage().getText().toLowerCase().startsWith("!репорт")){
+            if (event.getMessage().getFromId() < 0) return;
+            if (event.getMessage().getText().toLowerCase().startsWith("!репорт")) {
                 new Message()
                         .peerId(2000000004)
-                        .text( "@" + "id" + event.getMessage().getFromId() + "(Чёрт), " +event.getMessage().getText())
+                        .text("@" + "id" + event.getMessage().getFromId() + "(Чёрт), " + event.getMessage().getText())
                         .sendFrom(vkApiClient)
                         .execute();
                 return;
