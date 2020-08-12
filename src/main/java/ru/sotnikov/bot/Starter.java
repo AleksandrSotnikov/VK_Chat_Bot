@@ -32,6 +32,7 @@ public class Starter{
         vkApiClient.onMessage(event -> {
 
             System.out.println(event);
+
             if (event.getMessage().getText().toLowerCase().startsWith("!репорт")){
                 new Message()
                         .peerId(2000000004)
