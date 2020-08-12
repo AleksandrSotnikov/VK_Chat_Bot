@@ -9,34 +9,34 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MinerKick extends DefaultCommand {
+public class CaseKick extends DefaultCommand {
 
     private ArrayList<JailUser> jail;
 
-    public MinerKick(Entity entity,ArrayList<JailUser> jail) {
+    public CaseKick(Entity entity, ArrayList<JailUser> jail) {
         super(entity);
         this.jail = jail;
     }
 
 
-    public ArrayList<JailUser> minerDefend()
+    public ArrayList<JailUser> caseDefend()
     {
-            JailUser jails = new JailUser(getEntity().getFirstUser().getId(), 0,0);
-            if (!jail.contains(jails)) jail.add(jails);
-            for (JailUser j : jail) {
-                if (j.equals(jails)) {
-                    jail.remove(jails);
-                    if (j.getCountMine() < 2) {
-                        jail.add(new JailUser(j.getId(), j.getCountMine() + 1,j.getCountCase()));
-                        sendMessage(getEntity().getFirstUser().getFirstNameID() + " В данной беседе запрещено копать");
-                    } else {
-                        jail.add(new JailUser(j.getId(), 0,j.getCountCase()));
-                        String msg = "https://api.vk.com/method/messages.send?peer_id=2000000310&message=".concat("пред%20").concat(getEntity().getFirstUser().getFirstNameID().replace(", ", "")).concat("&v=5.38&access_token=680abd36eb5f18be313ef4a2a9283585588519b4c3c7d72bcc1deb56799357a4675728acd89b70176c9b3");
-                        getJSON(msg);
-                    }
+        JailUser jails = new JailUser(getEntity().getFirstUser().getId(), 0,0);
+        if (!jail.contains(jails)) jail.add(jails);
+        for (JailUser j : jail) {
+            if (j.equals(jails)) {
+                jail.remove(jails);
+                if (j.getCountCase() < 2) {
+                    jail.add(new JailUser(j.getId(), j.getCountMine(),j.getCountCase() + 1));
+                    sendMessage(getEntity().getFirstUser().getFirstNameID() + " В данной беседе запрещено открывать кейс 1");
+                } else {
+                    jail.add(new JailUser(j.getId(),j.getCountMine() ,0));
+                    String msg = "https://api.vk.com/method/messages.send?peer_id=2000000310&message=".concat("пред%20").concat(getEntity().getFirstUser().getFirstNameID().replace(", ", "")).concat("&v=5.38&access_token=680abd36eb5f18be313ef4a2a9283585588519b4c3c7d72bcc1deb56799357a4675728acd89b70176c9b3");
+                    getJSON(msg);
                 }
             }
-            return jail;
+        }
+        return jail;
     }
     public static String getJSON(String urle) {
         try {

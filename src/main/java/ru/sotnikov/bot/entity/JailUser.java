@@ -4,13 +4,22 @@ import java.util.Objects;
 
 public class JailUser {
     private int id;
-    private int count = 0;
+    private int countMine = 0;
+    private int countCase = 0;
 
-    public JailUser(int id,int count) {
+    public JailUser(int id,int countMine,int countCase) {
         setId(id);
-        setCount(count);
+        setCountMine(countMine);
+        setCountCase(countCase);
     }
 
+    public int getCountCase() {
+        return countCase;
+    }
+
+    public void setCountCase(int countCase) {
+        this.countCase = countCase;
+    }
 
     public int getId() {
         return id;
@@ -20,12 +29,12 @@ public class JailUser {
         this.id = id;
     }
 
-    public int getCount() {
-        return count;
+    public int getCountMine() {
+        return countMine;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setCountMine(int count) {
+        this.countMine = count;
     }
 
     @Override
