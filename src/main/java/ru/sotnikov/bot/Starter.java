@@ -9,6 +9,8 @@ import com.petersamokhin.vksdk.core.model.VkSettings;
 import com.petersamokhin.vksdk.core.model.objects.Message;
 import com.petersamokhin.vksdk.http.VkOkHttpClient;
 import kotlinx.serialization.json.JsonElement;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import org.jetbrains.annotations.NotNull;
 import ru.sotnikov.bot.core.MsgCheck;
 import ru.sotnikov.bot.core.help.ReplyMessage;
@@ -25,7 +27,17 @@ public class Starter{
     public void start(final int clientId, @NotNull final String accessToken) {
         if (accessToken.equals("fff")) throw new RuntimeException("Please, replace dummy access_token with yours in Launcher.kt");
 
-        final HttpClient httpClient = new VkOkHttpClient();
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .build();
+
+
+        final HttpClient httpClient = new VkOkHttpClient(okHttpClient);
+
+        //final HttpClient httpClient = new VkOkHttpClient();
 
         final VkSettings vkSettings = new VkSettings(httpClient, 5.122d,                // Woo-hoo! @JvmStatic
                  Parameters.of("lang", "ru"), 3);

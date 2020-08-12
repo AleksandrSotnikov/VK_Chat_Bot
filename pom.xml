@@ -52,6 +52,10 @@
             <artifactId>okhttp</artifactId>
             <version>4.5.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>logging-interceptor</artifactId>
+            <version>4.8.1</version>
+        </dependency>
     </dependencies>
 </project>
