@@ -1,12 +1,17 @@
 package ru.sotnikov.bot.core.commands;
 
 import ru.sotnikov.bot.core.modules.CourseBitcoinParser;
+import ru.sotnikov.bot.entity.Entity;
 
 import java.io.IOException;
 
-public class CourseBitcoin {
+public class CourseBitcoin extends DefaultCommand {
 
-    public String getCourse(){
+    public CourseBitcoin(Entity entity) {
+        super(entity);
+    }
+
+    public void getCourse(){
         String course;
         try {
             course = new CourseBitcoinParser().getCourseOnline();
@@ -14,7 +19,6 @@ public class CourseBitcoin {
         } catch (IOException e) {
             course = "Не удалось получить текущий курс";
         }
-
-        return course;
+        sendMessage(getEntity().getFirstUser().getFirstNameID().concat(course));
     }
 }

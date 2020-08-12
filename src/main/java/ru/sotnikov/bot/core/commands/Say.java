@@ -1,6 +1,24 @@
 package ru.sotnikov.bot.core.commands;
 
-public class Say {
+import com.petersamokhin.vksdk.core.model.objects.Message;
+import ru.sotnikov.bot.entity.Entity;
+
+public class Say extends DefaultCommand{
+
+    public Say(Entity entity) {
+        super(entity);
+    }
+
+    public void testSay(){
+        String msg = "";
+        if (isSecondUser())
+            msg =  msg.concat(getEntity().getFirstUser().getFirstName().concat(", Привет"));
+        else
+           msg = msg.concat(getEntity().getFirstUser().getFirstName()).concat(", переслал(а) сообщение ")
+                .concat(getEntity().getSecondUser().getFirstName());
+        sendMessage(msg);
+
+    }
     public String sayAll(){
         return "позвал всех - @all";
     }

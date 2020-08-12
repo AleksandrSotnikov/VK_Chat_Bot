@@ -4,10 +4,10 @@ import com.petersamokhin.vksdk.core.client.VkApiClient;
 import com.petersamokhin.vksdk.core.model.event.MessageNew;
 
 public class Entity {
-    private static User firstUser;
-    private static User secondUser;
-    private static MessageNew message;
-    private static VkApiClient vkApiClient;
+    private User firstUser = null;
+    private User secondUser = null;
+    private MessageNew message = null;
+    private VkApiClient vkApiClient = null;
 
     public Entity() {
     }
@@ -19,35 +19,47 @@ public class Entity {
         setVkApiClient(vkApiClient);
     }
 
-    public static User getFirstUser() {
+    public String getTextMessage(){
+        return getMessage().getMessage().getText();
+    }
+    public String[] getTextMessageSplit(){
+        return getTextMessage().split(" ");
+    }
+    public String getTextMessageSplit(int index){
+        return getTextMessageSplit()[index];
+    }
+    public int getPeerId(){
+       return message.getMessage().getPeerId();
+    }
+    public User getFirstUser() {
         return firstUser;
     }
 
-    public static void setFirstUser(User firstUser) {
-        Entity.firstUser = firstUser;
+    public void setFirstUser(User firstUser) {
+        this.firstUser = firstUser;
     }
 
-    public static User getSecondUser() {
+    public User getSecondUser() {
         return secondUser;
     }
 
-    public static void setSecondUser(User secondUser) {
-        Entity.secondUser = secondUser;
+    public void setSecondUser(User secondUser) {
+        this.secondUser = secondUser;
     }
 
-    public static MessageNew getMessage() {
+    public MessageNew getMessage() {
         return message;
     }
 
-    public static void setMessage(MessageNew message) {
-        Entity.message = message;
+    public void setMessage(MessageNew message) {
+        this.message = message;
     }
 
-    public static VkApiClient getVkApiClient() {
+    public VkApiClient getVkApiClient() {
         return vkApiClient;
     }
 
-    public static void setVkApiClient(VkApiClient vkApiClient) {
-        Entity.vkApiClient = vkApiClient;
+    public  void setVkApiClient(VkApiClient vkApiClient) {
+        this.vkApiClient = vkApiClient;
     }
 }

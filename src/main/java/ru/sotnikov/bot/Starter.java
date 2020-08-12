@@ -12,7 +12,10 @@ import kotlinx.serialization.json.JsonElement;
 import org.jetbrains.annotations.NotNull;
 import ru.sotnikov.bot.core.MsgCheck;
 import ru.sotnikov.bot.core.help.ReplyMessage;
+import ru.sotnikov.bot.core.help.Response;
 import ru.sotnikov.bot.core.help.Users;
+import ru.sotnikov.bot.entity.Entity;
+import ru.sotnikov.bot.entity.User;
 
 import java.io.*;
 import java.util.Properties;
@@ -29,6 +32,7 @@ public class Starter{
 
         final VkApiClient vkApiClient = new VkApiClient(clientId, accessToken, VkApiClient.Type.Community, vkSettings);
 
+        MsgCheck msgCheck = new MsgCheck();
         vkApiClient.onMessage(event -> {
 
             System.out.println(event);
@@ -42,6 +46,7 @@ public class Starter{
                 return;
             }
             ReplyMessage replyMessage = new Gson().fromJson(String.valueOf(event.getMessage().component15()),ReplyMessage.class);
+            System.out.println("reply - " + replyMessage);
             String string = "";
             boolean seconduser = replyMessage!=null && event.getMessage().getFromId() != replyMessage.getFromId();
             if(!seconduser){
@@ -53,31 +58,32 @@ public class Starter{
                 vkApiClient.call("users.get", Parameters.of("user_ids",string), false, new Callback<JsonElement>() {
                     @Override
                     public void onResult(@NotNull final JsonElement jsonElement) {
-                        MsgCheck msgCheck = new MsgCheck(event,vkApiClient);
-                        String name;
-                        String name2 = "";
+                        System.out.println(jsonElement);
+                        Entity entity = new Entity();
+
+                        entity.setMessage(event);
+                        entity.setVkApiClient(vkApiClient);
+                        User firstUser;
+                        User secondUser;
+                        Response response;
                         try {
-                            name = new Gson().fromJson(String.valueOf(jsonElement), Users.class)
-                                    .getResponse().get(0).getFirstName();
+                            response = new Gson().fromJson(String.valueOf(jsonElement), Users.class)
+                                    .getResponse().get(0);
+                            firstUser = new User(response.getFirstName(),response.getLastName(),response.getFirstName(),response.getId());
+                            entity.setFirstUser(firstUser);
                             if(seconduser)
                                 try {
-                                    name2 = new Gson().fromJson(String.valueOf(jsonElement), Users.class)
-                                            .getResponse().get(1).getFirstName();
+                                    response = new Gson().fromJson(String.valueOf(jsonElement), Users.class)
+                                            .getResponse().get(1);
+                                    secondUser = new User(response.getFirstName(),response.getLastName(),response.getFirstName(),response.getId());
+                                    entity.setSecondUser(secondUser);
                                 }catch (IndexOutOfBoundsException e){
                                     return;
                                 }
                         } catch (NullPointerException e) {
                             return;
                         }
-                        name = "@" + "id" + event.getMessage().getFromId() + "(" + name + "), ";
-                        if(seconduser)
-                        name2 = "@" + "id" + replyMessage.getFromId()  + "(" + name2 + ")";
-                        if (msgCheck.getIsCommand(event.getMessage().getText().split(" ")[0].toLowerCase()))
-                            new Message()
-                                    .peerId(event.getMessage().getPeerId())
-                                    .text(name + msgCheck.getResponse(seconduser,name2))
-                                    .sendFrom(vkApiClient)
-                                    .execute();
+                            msgCheck.getResponse(entity);
                     }
 
                     @Override

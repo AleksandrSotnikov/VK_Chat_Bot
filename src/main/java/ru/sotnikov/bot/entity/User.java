@@ -1,10 +1,10 @@
 package ru.sotnikov.bot.entity;
 
 public class User {
-    private static String firstName;
-    private static String lastName;
-    private static String nickName;
-    private static String id;
+    private String firstName;
+    private String lastName;
+    private String nickName;
+    private int id;
 
     public User() {
     }
@@ -16,35 +16,37 @@ public class User {
         setId(id);
     }
 
-    public static String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public static void setFirstName(String firstName) {
-        User.firstName = firstName;
+    public String getFirstNameID(){ return "@".concat("id").concat(String.valueOf(getId())).concat("(").concat(getFirstName()).concat("), ");}
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public static String getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
-    public static void setLastName(String lastName) {
-        User.lastName = lastName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public static String getNickName() {
+    public String getNickName() {
         return nickName;
     }
 
-    public static void setNickName(String nickName) {
-        User.nickName = nickName;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
-    public static String getId() {
+    public int getId() {
         return id;
     }
 
-    public static void setId(String id) {
-        User.id = id;
+    public void setId(String id) {
+        this.id = Integer.parseInt(id);
     }
 }

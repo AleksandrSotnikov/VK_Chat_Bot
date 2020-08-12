@@ -2,28 +2,74 @@ package ru.sotnikov.bot.core;
 
 import com.petersamokhin.vksdk.core.client.VkApiClient;
 import com.petersamokhin.vksdk.core.model.event.MessageNew;
+import com.petersamokhin.vksdk.core.model.objects.Message;
 import ru.sotnikov.bot.core.commands.CourseBitcoin;
 import ru.sotnikov.bot.core.commands.ReName;
 import ru.sotnikov.bot.core.commands.Say;
+import ru.sotnikov.bot.entity.Entity;
+import ru.sotnikov.bot.entity.JailUser;
 
 import java.util.ArrayList;
 
 public class MsgCheck {
-    private static MessageNew message = null;
+   // private static MessageNew message = null;
     private static ArrayList<String> command = new ArrayList<>();
-    private static VkApiClient vkApiClient = null;
+   // private static VkApiClient vkApiClient = null;
+    private static ArrayList<JailUser> jail = new ArrayList<>();
 
-    public MsgCheck(MessageNew message, VkApiClient vkApiClient) {
-        setMessage(message);
-        setVkApiClient(vkApiClient);
-        updateCommand();
+    public MsgCheck() {
     }
+
+   //public MsgCheck(MessageNew message, VkApiClient vkApiClient) {
+   //    setMessage(message);
+   //    setVkApiClient(vkApiClient);
+   //    updateCommand();
+   //}
 
     public boolean getIsCommand(String command){
         return MsgCheck.command.contains(command);
     }
 
-    public String getResponse(boolean secondUser, String name2) {
+    public void getResponse(Entity entity){
+        switch (entity.getTextMessageSplit(0).toLowerCase()) {
+            case "тест":
+                    new Say(entity).testSay();
+                    break;
+            case "курс":
+                    new CourseBitcoin(entity).getCourse();
+                    break;
+            case "название":
+                    //new ReName(entity).newName();
+                    break;
+            case "копать":
+                     JailUser jails = new JailUser(entity.getFirstUser().getId(),0);
+                     if(!jail.contains(jails)) jail.add(jails);
+                         for(JailUser j:jail){
+                             if(j.equals(jails)) {
+                                 jail.remove(jails);
+                                 if (j.getCount() < 1) {
+                                     jail.add(new JailUser(j.getId(), j.getCount() + 1));
+                                     new Message()
+                                             .peerId(entity.getMessage().getMessage().getPeerId())
+                                             .text(entity.getFirstUser().getFirstNameID() + " В данной беседе запрещено копать")
+                                             .sendFrom(entity.getVkApiClient())
+                                             .execute();
+                                 } else {
+                                     jail.add(new JailUser(j.getId(), 0));
+                                     new Message()
+                                             .peerId(entity.getMessage().getMessage().getPeerId())
+                                             .text("пред " + entity.getFirstUser().getFirstNameID().replace(",", ""))
+                                             .sendFrom(entity.getVkApiClient())
+                                             .execute();
+                                 }
+                             }
+                         }
+                    break;
+
+        }
+    }
+
+    /*public String getResponse(boolean secondUser, String name2) {
         String response = "";
         String[] text =  message.getMessage().getText().split(" ");
         String fullText = message.getMessage().getText();
@@ -32,7 +78,6 @@ public class MsgCheck {
                 response = new CourseBitcoin().getCourse();
                 break;
             case "позвать":
-                //response = new Say().sayAll();
                 if (text.length>1)
                 switch (text[1].toLowerCase()){
                     case "всех":
@@ -77,15 +122,15 @@ public class MsgCheck {
                 break;
         }
         return response;
-    }
+    }*/
 
-    public MessageNew getMessage() {
-        return message;
-    }
-
-    public void setMessage(MessageNew message) {
-        MsgCheck.message = message;
-    }
+   // public MessageNew getMessage() {
+   //     return message;
+   // }
+//
+   // public void setMessage(MessageNew message) {
+   //     MsgCheck.message = message;
+   // }
 
     public static ArrayList<String> getCommand() {
         return command;
@@ -95,13 +140,13 @@ public class MsgCheck {
         MsgCheck.command = command;
     }
 
-    public static VkApiClient getVkApiClient() {
-        return vkApiClient;
-    }
-
-    public static void setVkApiClient(VkApiClient vkApiClient) {
-        MsgCheck.vkApiClient = vkApiClient;
-    }
+    //public static VkApiClient getVkApiClient() {
+    //    return vkApiClient;
+    //}
+//
+    //public static void setVkApiClient(VkApiClient vkApiClient) {
+    //    MsgCheck.vkApiClient = vkApiClient;
+    //}
 
     public void updateCommand(){
         command.add("курс");
@@ -111,6 +156,7 @@ public class MsgCheck {
         command.add("укусить");
         command.add("название");
         command.add("трахнуть");
+        command.add("тест");
     }
 
 }
