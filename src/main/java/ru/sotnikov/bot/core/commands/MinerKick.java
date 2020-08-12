@@ -31,7 +31,10 @@ public class MinerKick extends DefaultCommand {
                         sendMessage(getEntity().getFirstUser().getFirstNameID() + " В данной беседе запрещено копать");
                     } else {
                         jail.add(new JailUser(j.getId(), 0,j.getCountCase()));
-                        String msg = "https://api.vk.com/method/messages.send?peer_id=2000000310&message=".concat("пред%20").concat(getEntity().getFirstUser().getFirstNameID().replace(", ", "")).concat("&v=5.38&access_token=680abd36eb5f18be313ef4a2a9283585588519b4c3c7d72bcc1deb56799357a4675728acd89b70176c9b3");
+                        String msg = "https://api.vk.com/method/messages.send?peer_id=2000000310&message="
+                                .concat("пред%20")
+                                .concat(getEntity().getFirstUser().getFirstNameID().replace(", ", ""))
+                                .concat("&v=5.38&access_token=").concat(getEntity().getAccessTokens());
                         System.out.println("Выдан пред" + j.getId());
                         getJSON(msg);
                     }

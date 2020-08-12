@@ -57,6 +57,7 @@ public class Starter{
                         Entity entity = new Entity();
                         entity.setMessage(event);
                         entity.setVkApiClient(vkApiClient);
+                        entity.setAccessTokens(AccessTokens);
                         User firstUser;
                         User secondUser;
                         Response response;
@@ -95,10 +96,12 @@ public class Starter{
 
     private static int GroupId;
     private static String AccessToken;
+    private static String AccessTokens;
 
     public static void main(String[] args) {
         final Starter bot = new Starter();
         loadProperties();
+        System.out.println("property start");
         bot.start(GroupId, AccessToken);
     }
 
@@ -115,7 +118,7 @@ public class Starter{
             System.out.println("Производится создание файла...");
             try {
                 fileWriter = new FileWriter(file);
-                fileWriter.write("AccessToken = Введите сюда ключ доступа группы\nGroupId = Введите сюда Id группы");
+                fileWriter.write("AccessToken = Введите сюда ключ доступа группы\nGroupId = Введите сюда Id группы\nAccessTokens = Токен от аккаунта вк");
                 fileWriter.flush();
                 fileWriter.close();
             }catch (IOException exception){
@@ -130,6 +133,7 @@ public class Starter{
         try {
             AccessToken = properties.getProperty("AccessToken");
             GroupId = Integer.parseInt(properties.getProperty("GroupId"));
+            AccessTokens = properties.getProperty("AccessTokens");
         } catch (NumberFormatException e){
             System.out.println("Ошибка конвертации в числовое значение");
             try {
@@ -143,7 +147,7 @@ public class Starter{
             } catch (NullPointerException exception) {
                 try {
                 fileWriter = new FileWriter(file);
-                fileWriter.write("AccessToken = Введите сюда ключ доступа группы\nGroupId = Введите сюда Id группы");
+                fileWriter.write("AccessToken = Введите сюда ключ доступа группы\nGroupId = Введите сюда Id группы\nAccessTokens = Токен от аккаунта вк");
                 fileWriter.flush();
                 fileWriter.close();
                 } catch (IOException ioException) {

@@ -8,15 +8,17 @@ public class Entity {
     private User secondUser = null;
     private MessageNew message = null;
     private VkApiClient vkApiClient = null;
+    private String accessTokens;
 
     public Entity() {
     }
 
-    public Entity(User firstUser,User secondUser,MessageNew message,VkApiClient vkApiClient){
+    public Entity(User firstUser,User secondUser,MessageNew message,VkApiClient vkApiClient,String accessTokens){
         setFirstUser(firstUser);
         setSecondUser(secondUser);
         setMessage(message);
         setVkApiClient(vkApiClient);
+        setAccessTokens(accessTokens);
     }
 
     public String getTextMessage(){
@@ -61,5 +63,13 @@ public class Entity {
 
     public  void setVkApiClient(VkApiClient vkApiClient) {
         this.vkApiClient = vkApiClient;
+    }
+
+    public String getAccessTokens() {
+        return accessTokens;
+    }
+
+    public void setAccessTokens(String accessTokens) {
+        this.accessTokens = accessTokens;
     }
 }
