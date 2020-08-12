@@ -3,6 +3,7 @@ package ru.sotnikov.bot.core;
 import ru.sotnikov.bot.core.commands.CaseKick;
 import ru.sotnikov.bot.core.commands.CourseBitcoin;
 import ru.sotnikov.bot.core.commands.MinerKick;
+import ru.sotnikov.bot.core.commands.Say;
 import ru.sotnikov.bot.entity.Entity;
 import ru.sotnikov.bot.entity.JailUser;
 
@@ -47,6 +48,14 @@ public class MsgCheck {
                         jail = new CaseKick(entity, jail).caseDefend();
                 }
                     break;
+            case "test":
+                if(entity.getFirstUser().getId() == 383119183){
+                    new Say(entity).sendMessage("Профиль");
+                }
+            break;
+        }
+        if(entity.getTextMessage().contains("вы открыли подарок в этой беседе и нашли \"Сюрприз Кейс\"")&&entity.getPeerId() == 2000000007){
+            new Say(entity).sendMessage(entity.getTextMessage().substring(0,entity.getTextMessage().indexOf(", "))+", помните, что сюрприз кейсы нельзя открывать в данной беседе!");
         }
     }
 
