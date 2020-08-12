@@ -17,7 +17,6 @@ public class Say extends DefaultCommand{
            msg = msg.concat(getEntity().getFirstUser().getFirstName()).concat(", переслал(а) сообщение ")
                 .concat(getEntity().getSecondUser().getFirstName());
         sendMessage(msg);
-
     }
     public String sayAll(){
         return "позвал всех - @all";

@@ -1,30 +1,17 @@
 package ru.sotnikov.bot.core;
 
-import com.petersamokhin.vksdk.core.client.VkApiClient;
-import com.petersamokhin.vksdk.core.model.event.MessageNew;
-import com.petersamokhin.vksdk.core.model.objects.Message;
 import ru.sotnikov.bot.core.commands.CourseBitcoin;
-import ru.sotnikov.bot.core.commands.ReName;
-import ru.sotnikov.bot.core.commands.Say;
+import ru.sotnikov.bot.core.commands.MinerKick;
 import ru.sotnikov.bot.entity.Entity;
 import ru.sotnikov.bot.entity.JailUser;
-
 import java.util.ArrayList;
 
 public class MsgCheck {
-   // private static MessageNew message = null;
     private static ArrayList<String> command = new ArrayList<>();
-   // private static VkApiClient vkApiClient = null;
     private static ArrayList<JailUser> jail = new ArrayList<>();
 
     public MsgCheck() {
     }
-
-   //public MsgCheck(MessageNew message, VkApiClient vkApiClient) {
-   //    setMessage(message);
-   //    setVkApiClient(vkApiClient);
-   //    updateCommand();
-   //}
 
     public boolean getIsCommand(String command){
         return MsgCheck.command.contains(command);
@@ -33,7 +20,7 @@ public class MsgCheck {
     public void getResponse(Entity entity){
         switch (entity.getTextMessageSplit(0).toLowerCase()) {
             case "тест":
-                    new Say(entity).testSay();
+                   //new Say(entity).testSay();
                     break;
             case "курс":
                     new CourseBitcoin(entity).getCourse();
@@ -42,30 +29,13 @@ public class MsgCheck {
                     //new ReName(entity).newName();
                     break;
             case "копать":
-                     JailUser jails = new JailUser(entity.getFirstUser().getId(),0);
-                     if(!jail.contains(jails)) jail.add(jails);
-                         for(JailUser j:jail){
-                             if(j.equals(jails)) {
-                                 jail.remove(jails);
-                                 if (j.getCount() < 1) {
-                                     jail.add(new JailUser(j.getId(), j.getCount() + 1));
-                                     new Message()
-                                             .peerId(entity.getMessage().getMessage().getPeerId())
-                                             .text(entity.getFirstUser().getFirstNameID() + " В данной беседе запрещено копать")
-                                             .sendFrom(entity.getVkApiClient())
-                                             .execute();
-                                 } else {
-                                     jail.add(new JailUser(j.getId(), 0));
-                                     new Message()
-                                             .peerId(entity.getMessage().getMessage().getPeerId())
-                                             .text("пред " + entity.getFirstUser().getFirstNameID().replace(",", ""))
-                                             .sendFrom(entity.getVkApiClient())
-                                             .execute();
-                                 }
-                             }
-                         }
+                   jail = new MinerKick(entity,jail).minerDefend();
                     break;
-
+            case "[club171493284|@gorillabot]":
+                    System.out.println("work");
+                    if (entity.getTextMessageSplit(1).equals("⛏"))
+                        jail = new MinerKick(entity,jail).minerDefend();
+                    break;
         }
     }
 
@@ -124,39 +94,23 @@ public class MsgCheck {
         return response;
     }*/
 
-   // public MessageNew getMessage() {
-   //     return message;
-   // }
-//
-   // public void setMessage(MessageNew message) {
-   //     MsgCheck.message = message;
-   // }
-
-    public static ArrayList<String> getCommand() {
-        return command;
-    }
-
-    public static void setCommand(ArrayList<String> command) {
-        MsgCheck.command = command;
-    }
-
-    //public static VkApiClient getVkApiClient() {
-    //    return vkApiClient;
+    //public static ArrayList<String> getCommand() {
+    //    return command;
     //}
 //
-    //public static void setVkApiClient(VkApiClient vkApiClient) {
-    //    MsgCheck.vkApiClient = vkApiClient;
+    //public static void setCommand(ArrayList<String> command) {
+    //    MsgCheck.command = command;
     //}
 
-    public void updateCommand(){
-        command.add("курс");
-        command.add("позвать");
-        command.add("бот");
-        command.add("уебать");
-        command.add("укусить");
-        command.add("название");
-        command.add("трахнуть");
-        command.add("тест");
-    }
+   //public void updateCommand(){
+   //    command.add("курс");
+   //    command.add("позвать");
+   //    command.add("бот");
+   //    command.add("уебать");
+   //    command.add("укусить");
+   //    command.add("название");
+   //    command.add("трахнуть");
+   //    command.add("тест");
+   //}
 
 }
