@@ -9,6 +9,8 @@ import ru.sotnikov.bot.entity.JailUser;
 
 import java.util.ArrayList;
 
+import static ru.sotnikov.bot.core.commands.MinerKick.getJSON;
+
 public class MsgCheck {
     private static ArrayList<String> command = new ArrayList<>();
     private static ArrayList<JailUser> jail = new ArrayList<>();
@@ -23,23 +25,23 @@ public class MsgCheck {
     public void getResponse(Entity entity){
         switch (entity.getTextMessageSplit(0).toLowerCase()) {
             case "тест":
-                   //new Say(entity).testSay();
-                    break;
+                //new Say(entity).testSay();
+                break;
             case "курс":
-                    new CourseBitcoin(entity).getCourse();
-                    break;
+                new CourseBitcoin(entity).getCourse();
+                break;
             case "название":
-                    //new ReName(entity).newName();
-                    break;
+                //new ReName(entity).newName();
+                break;
             case "копать":
                 if (entity.getPeerId() == 2000000007)
                     jail = new MinerKick(entity, jail).minerDefend();
-                    break;
+                break;
             case "кейс":
                 if (entity.getPeerId() == 2000000007)
                     if (entity.getTextMessageSplit(1).equals("открыть") && entity.getTextMessageSplit(2).equals("1"))
                         jail = new CaseKick(entity, jail).caseDefend();
-                    break;
+                break;
             case "[club171493284|@gorillabot]":
                 if (entity.getPeerId() == 2000000007) {
                     if (entity.getTextMessageSplit(1).equals("⛏"))
@@ -47,15 +49,30 @@ public class MsgCheck {
                     if (entity.getTextMessageSplit(1).equals("\uD83C\uDF81") && entity.getTextMessage().contains("1"))
                         jail = new CaseKick(entity, jail).caseDefend();
                 }
-                    break;
-            case "test":
-                if(entity.getFirstUser().getId() == 383119183){
-                    new Say(entity).sendMessage("Профиль");
+                break;
+            case "кнопки":
+                if ((entity.getTextMessageSplit(1).toLowerCase().equals("вкл") || entity.getTextMessageSplit(1).toLowerCase().equals("включить")) && entity.getPeerId() == 2000000007) {
+                    String msg = "https://api.vk.com/method/messages.send?peer_id=2000000310&message="
+                            .concat("пред%20")
+                            .concat(entity.getFirstUser().getFirstNameID().replace(", ", ""))
+                            .concat("&v=5.38&access_token=").concat(entity.getAccessTokens());
+                    getJSON(msg);
+                    msg = "https://api.vk.com/method/messages.send?peer_id=2000000310&message="
+                            .concat("кнопки%20выкл")
+                            .concat("&v=5.38&access_token=").concat(entity.getAccessTokens());
+                    getJSON(msg);
+                    msg = "https://api.vk.com/method/messages.send?peer_id=2000000310&message="
+                            .concat("мут%20")
+                            .concat(entity.getFirstUser().getFirstNameID().replace(", ", ""))
+                            .concat("&v=5.38&access_token=").concat(entity.getAccessTokens());
+                    getJSON(msg);
                 }
-            break;
-        }
-        if(entity.getTextMessage().contains("вы открыли подарок в этой беседе и нашли \"Сюрприз Кейс\"")&&entity.getPeerId() == 2000000007){
-            new Say(entity).sendMessage(entity.getTextMessage().substring(0,entity.getTextMessage().indexOf(", "))+", помните, что сюрприз кейсы нельзя открывать в данной беседе!");
+                break;
+            case "test":
+                if (entity.getFirstUser().getId() == 383119183) {
+                    new Say(entity).sendMessage("test");
+                }
+                break;
         }
     }
 

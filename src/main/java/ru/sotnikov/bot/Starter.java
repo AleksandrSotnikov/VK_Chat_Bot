@@ -1,6 +1,7 @@
 package ru.sotnikov.bot;
 
 import com.google.gson.Gson;
+import com.petersamokhin.vksdk.core.api.VkApi;
 import com.petersamokhin.vksdk.core.callback.Callback;
 import com.petersamokhin.vksdk.core.client.VkApiClient;
 import com.petersamokhin.vksdk.core.http.HttpClient;
@@ -43,13 +44,14 @@ public class Starter{
 
         // final HttpClient httpClient = new VkOkHttpClient();
 
-        final VkSettings vkSettings = new VkSettings(httpClient, 5.122d,                // Woo-hoo! @JvmStatic
-                 Parameters.of("lang", "ru"), 3);
+        final VkSettings vkSettings = new VkSettings(httpClient, VkApi.DEFAULT_VERSION,                // Woo-hoo! @JvmStatic
+                Parameters.of("lang", "ru"), 3);
 
         final VkApiClient vkApiClient = new VkApiClient(clientId, accessToken, VkApiClient.Type.Community, vkSettings);
 
         MsgCheck msgCheck = new MsgCheck();
         vkApiClient.onMessage(event -> {
+            System.out.println(event);
             if (event.getMessage().getFromId() < 0) return;
             if (event.getMessage().getText().toLowerCase().startsWith("!репорт")) {
                 new Message()
