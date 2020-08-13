@@ -27,11 +27,9 @@ import java.util.concurrent.TimeUnit;
 public class Starter{
 
     public void start(final int clientId, @NotNull final String accessToken) {
-        if (accessToken.equals("fff")) throw new RuntimeException("Please, replace dummy access_token with yours in Launcher.kt");
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(logging)
                 .connectTimeout(10, TimeUnit.SECONDS)
@@ -45,7 +43,7 @@ public class Starter{
         // final HttpClient httpClient = new VkOkHttpClient();
 
         final VkSettings vkSettings = new VkSettings(httpClient, 5.122d,                // Woo-hoo! @JvmStatic
-                Parameters.of("lang", "ru"), 3);
+                Parameters.of("lang", "ru"), 1);
 
         final VkApiClient vkApiClient = new VkApiClient(clientId, accessToken, VkApiClient.Type.Community, vkSettings);
 
@@ -110,6 +108,8 @@ public class Starter{
                 e.getStackTrace();
             }
         });
+        System.out.println("ddd");
+
         vkApiClient.startLongPolling();
     }
 
