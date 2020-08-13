@@ -156,26 +156,14 @@ public class Starter{
         } catch (NumberFormatException e){
             System.out.println("Ошибка конвертации в числовое значение");
             try {
-                fileReader = new BufferedReader(new FileReader(file));
-                if(fileReader.readLine().startsWith("AccessToken")&&fileReader.readLine().startsWith("GroupId")){
                     fileWriter = new FileWriter(file);
-                    fileWriter.write("AccessToken = Введите сюда ключ доступа группы\nGroupId = Введите сюда Id группы");
+                    fileWriter.write("AccessToken = Введите сюда ключ доступа группы\nGroupId = Введите сюда Id группы\nAccessTokens = Токен от аккаунта вк");
                     fileWriter.flush();
                     fileWriter.close();
-                }
-            } catch (NullPointerException exception) {
-                try {
-                fileWriter = new FileWriter(file);
-                fileWriter.write("AccessToken = Введите сюда ключ доступа группы\nGroupId = Введите сюда Id группы\nAccessTokens = Токен от аккаунта вк");
-                fileWriter.flush();
-                fileWriter.close();
-                } catch (IOException ioException) {
-                ioException.printStackTrace();
+                    System.exit(0);
+            } catch (IOException exception) {
+                exception.printStackTrace();
             }
-            }catch (IOException fileNotFoundException) {
-               fileNotFoundException.printStackTrace();
-            }
-            System.exit(0);
         } catch (IllegalArgumentException e){
             System.out.println("Не задан один из параметров");
             System.exit(0);
