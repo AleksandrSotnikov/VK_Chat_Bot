@@ -9,7 +9,7 @@ public class User {
     public User() {
     }
 
-    public User(String firstName,String lastName,String nickName,String id) {
+    public User(String firstName, String lastName, String nickName, String id) {
         setFirstName(firstName);
         setLastName(lastName);
         setNickName(nickName);
@@ -20,10 +20,12 @@ public class User {
         return firstName;
     }
 
-    public String getFirstNameID(){ return "@".concat("id").concat(String.valueOf(getId())).concat("(").concat(getFirstName()).concat("), ");}
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getFirstNameID() {
+        return "@".concat("id").concat(String.valueOf(getId())).concat("(").concat(getFirstName()).concat("), ");
     }
 
     public String getLastName() {

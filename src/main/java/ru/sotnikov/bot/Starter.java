@@ -1,7 +1,6 @@
 package ru.sotnikov.bot;
 
 import com.google.gson.Gson;
-import com.petersamokhin.vksdk.core.api.VkApi;
 import com.petersamokhin.vksdk.core.callback.Callback;
 import com.petersamokhin.vksdk.core.client.VkApiClient;
 import com.petersamokhin.vksdk.core.http.HttpClient;
@@ -24,7 +23,64 @@ import java.io.*;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class Starter{
+public class Starter {
+
+    private static int GroupId;
+    private static String AccessToken;
+    private static String AccessTokens;
+
+    public static void main(String[] args) {
+        final Starter bot = new Starter();
+        loadProperties();
+        System.out.println("property start");
+        bot.start(GroupId, AccessToken);
+    }
+
+    public static void loadProperties() {
+        String pathToFile = "src/main/resources/config.properties";
+        Properties properties = new Properties();
+        File file = new File(pathToFile);
+        FileWriter fileWriter;
+        BufferedReader fileReader;
+        try {
+            properties.load(new FileReader(pathToFile));
+        } catch (FileNotFoundException e) {
+            System.out.println("Не удалось найти файл config.properties");
+            System.out.println("Производится создание файла...");
+            try {
+                fileWriter = new FileWriter(file);
+                fileWriter.write("AccessToken = Введите сюда ключ доступа группы\nGroupId = Введите сюда Id группы\nAccessTokens = Токен от аккаунта вк");
+                fileWriter.flush();
+                fileWriter.close();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+                System.out.println("Возникла непредвиденная ошибка");
+            }
+            System.out.println("Создание файла config.properties завершено, заполните его нужными данными");
+            System.exit(0);
+        } catch (IOException e) {
+            System.out.println("Ошибка при выполнении метода load()");
+        }
+        try {
+            AccessToken = properties.getProperty("AccessToken");
+            GroupId = Integer.parseInt(properties.getProperty("GroupId"));
+            AccessTokens = properties.getProperty("AccessTokens");
+        } catch (NumberFormatException e) {
+            System.out.println("Ошибка конвертации в числовое значение");
+            try {
+                fileWriter = new FileWriter(file);
+                fileWriter.write("AccessToken = Введите сюда ключ доступа группы\nGroupId = Введите сюда Id группы\nAccessTokens = Токен от аккаунта вк");
+                fileWriter.flush();
+                fileWriter.close();
+                System.exit(0);
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Не задан один из параметров");
+            System.exit(0);
+        }
+    }
 
     public void start(final int clientId, @NotNull final String accessToken) {
 
@@ -59,16 +115,16 @@ public class Starter{
                         .execute();
                 return;
             }
-            ReplyMessage replyMessage = new Gson().fromJson(String.valueOf(event.getMessage().component15()),ReplyMessage.class);
+            ReplyMessage replyMessage = new Gson().fromJson(String.valueOf(event.getMessage().component15()), ReplyMessage.class);
             String string = "";
-            boolean seconduser = replyMessage!=null && event.getMessage().getFromId() != replyMessage.getFromId();
-            if(!seconduser){
-             string += event.getMessage().getFromId();
-            }else {
-                string += event.getMessage().getFromId()+","+replyMessage.getFromId();
+            boolean seconduser = replyMessage != null && event.getMessage().getFromId() != replyMessage.getFromId();
+            if (!seconduser) {
+                string += event.getMessage().getFromId();
+            } else {
+                string += event.getMessage().getFromId() + "," + replyMessage.getFromId();
             }
             try {
-                vkApiClient.call("users.get", Parameters.of("user_ids",string), false, new Callback<JsonElement>() {
+                vkApiClient.call("users.get", Parameters.of("user_ids", string), false, new Callback<JsonElement>() {
                     @Override
                     public void onResult(@NotNull final JsonElement jsonElement) {
                         Entity entity = new Entity();
@@ -81,21 +137,21 @@ public class Starter{
                         try {
                             response = new Gson().fromJson(String.valueOf(jsonElement), Users.class)
                                     .getResponse().get(0);
-                            firstUser = new User(response.getFirstName(),response.getLastName(),response.getFirstName(),response.getId());
+                            firstUser = new User(response.getFirstName(), response.getLastName(), response.getFirstName(), response.getId());
                             entity.setFirstUser(firstUser);
-                            if(seconduser)
+                            if (seconduser)
                                 try {
                                     response = new Gson().fromJson(String.valueOf(jsonElement), Users.class)
                                             .getResponse().get(1);
-                                    secondUser = new User(response.getFirstName(),response.getLastName(),response.getFirstName(),response.getId());
+                                    secondUser = new User(response.getFirstName(), response.getLastName(), response.getFirstName(), response.getId());
                                     entity.setSecondUser(secondUser);
-                                }catch (IndexOutOfBoundsException e){
+                                } catch (IndexOutOfBoundsException e) {
                                     return;
                                 }
                         } catch (NullPointerException e) {
                             return;
                         }
-                            msgCheck.getResponse(entity);
+                        msgCheck.getResponse(entity);
                     }
 
                     @Override
@@ -104,69 +160,12 @@ public class Starter{
                     }
 
                 });
-            }catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 e.getStackTrace();
             }
         });
         System.out.println("ddd");
 
         vkApiClient.startLongPolling();
-    }
-
-    private static int GroupId;
-    private static String AccessToken;
-    private static String AccessTokens;
-
-    public static void main(String[] args) {
-        final Starter bot = new Starter();
-        loadProperties();
-        System.out.println("property start");
-        bot.start(GroupId, AccessToken);
-    }
-
-    public static void loadProperties()  {
-        String pathToFile = "src/main/resources/config.properties";
-        Properties properties = new Properties();
-        File file  = new File(pathToFile);
-        FileWriter fileWriter;
-        BufferedReader fileReader;
-        try {
-            properties.load(new FileReader(pathToFile));
-        } catch (FileNotFoundException e) {
-            System.out.println("Не удалось найти файл config.properties");
-            System.out.println("Производится создание файла...");
-            try {
-                fileWriter = new FileWriter(file);
-                fileWriter.write("AccessToken = Введите сюда ключ доступа группы\nGroupId = Введите сюда Id группы\nAccessTokens = Токен от аккаунта вк");
-                fileWriter.flush();
-                fileWriter.close();
-            }catch (IOException exception){
-                exception.printStackTrace();
-                System.out.println("Возникла непредвиденная ошибка");
-            }
-            System.out.println("Создание файла config.properties завершено, заполните его нужными данными");
-            System.exit(0);
-        } catch (IOException e){
-            System.out.println("Ошибка при выполнении метода load()");
-        }
-        try {
-            AccessToken = properties.getProperty("AccessToken");
-            GroupId = Integer.parseInt(properties.getProperty("GroupId"));
-            AccessTokens = properties.getProperty("AccessTokens");
-        } catch (NumberFormatException e){
-            System.out.println("Ошибка конвертации в числовое значение");
-            try {
-                    fileWriter = new FileWriter(file);
-                    fileWriter.write("AccessToken = Введите сюда ключ доступа группы\nGroupId = Введите сюда Id группы\nAccessTokens = Токен от аккаунта вк");
-                    fileWriter.flush();
-                    fileWriter.close();
-                    System.exit(0);
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
-        } catch (IllegalArgumentException e){
-            System.out.println("Не задан один из параметров");
-            System.exit(0);
-        }
     }
 }

@@ -13,7 +13,7 @@ public class Entity {
     public Entity() {
     }
 
-    public Entity(User firstUser,User secondUser,MessageNew message,VkApiClient vkApiClient,String accessTokens){
+    public Entity(User firstUser, User secondUser, MessageNew message, VkApiClient vkApiClient, String accessTokens) {
         setFirstUser(firstUser);
         setSecondUser(secondUser);
         setMessage(message);
@@ -21,18 +21,22 @@ public class Entity {
         setAccessTokens(accessTokens);
     }
 
-    public String getTextMessage(){
+    public String getTextMessage() {
         return getMessage().getMessage().getText();
     }
-    public String[] getTextMessageSplit(){
+
+    public String[] getTextMessageSplit() {
         return getTextMessage().split(" ");
     }
-    public String getTextMessageSplit(int index){
+
+    public String getTextMessageSplit(int index) {
         return getTextMessageSplit()[index];
     }
-    public int getPeerId(){
-       return message.getMessage().getPeerId();
+
+    public int getPeerId() {
+        return message.getMessage().getPeerId();
     }
+
     public User getFirstUser() {
         return firstUser;
     }
@@ -61,7 +65,7 @@ public class Entity {
         return vkApiClient;
     }
 
-    public  void setVkApiClient(VkApiClient vkApiClient) {
+    public void setVkApiClient(VkApiClient vkApiClient) {
         this.vkApiClient = vkApiClient;
     }
 

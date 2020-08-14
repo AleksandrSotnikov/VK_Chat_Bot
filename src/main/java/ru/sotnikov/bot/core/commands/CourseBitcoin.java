@@ -11,7 +11,7 @@ public class CourseBitcoin extends DefaultCommand {
         super(entity);
     }
 
-    public void getCourse(){
+    public void getCourse() {
         String course;
         try {
             course = new CourseBitcoinParser().getCourseOnline();

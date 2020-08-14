@@ -7,7 +7,7 @@ public class JailUser {
     private int countMine = 0;
     private int countCase = 0;
 
-    public JailUser(int id,int countMine,int countCase) {
+    public JailUser(int id, int countMine, int countCase) {
         setId(id);
         setCountMine(countMine);
         setCountCase(countCase);

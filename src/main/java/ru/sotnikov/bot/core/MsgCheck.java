@@ -12,17 +12,17 @@ import java.util.ArrayList;
 import static ru.sotnikov.bot.core.commands.MinerKick.getJSON;
 
 public class MsgCheck {
-    private static ArrayList<String> command = new ArrayList<>();
+    private static final ArrayList<String> command = new ArrayList<>();
     private static ArrayList<JailUser> jail = new ArrayList<>();
 
     public MsgCheck() {
     }
 
-    public boolean getIsCommand(String command){
+    public boolean getIsCommand(String command) {
         return MsgCheck.command.contains(command);
     }
 
-    public void getResponse(Entity entity){
+    public void getResponse(Entity entity) {
         switch (entity.getTextMessageSplit(0).toLowerCase()) {
             case "тест":
                 //new Say(entity).testSay();
@@ -139,15 +139,15 @@ public class MsgCheck {
     //    MsgCheck.command = command;
     //}
 
-   //public void updateCommand(){
-   //    command.add("курс");
-   //    command.add("позвать");
-   //    command.add("бот");
-   //    command.add("уебать");
-   //    command.add("укусить");
-   //    command.add("название");
-   //    command.add("трахнуть");
-   //    command.add("тест");
-   //}
+    //public void updateCommand(){
+    //    command.add("курс");
+    //    command.add("позвать");
+    //    command.add("бот");
+    //    command.add("уебать");
+    //    command.add("укусить");
+    //    command.add("название");
+    //    command.add("трахнуть");
+    //    command.add("тест");
+    //}
 
 }

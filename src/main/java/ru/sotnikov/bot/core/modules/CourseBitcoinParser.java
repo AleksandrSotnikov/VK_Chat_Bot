@@ -11,9 +11,10 @@ public class CourseBitcoinParser {
     public CourseBitcoinParser() throws IOException {
         doc = Jsoup.connect("http://api.bitcoincharts.com/v1/markets.json").get();
     }
-    public String getCourseOnline(){
+
+    public String getCourseOnline() {
         return doc.toString().split("bitstampUSD")[0]
-                .split("ask")[doc.toString().split("bitstampUSD")[0].split("ask").length-1]
+                .split("ask")[doc.toString().split("bitstampUSD")[0].split("ask").length - 1]
                 .split(":")[1]
                 .split("\\.")[0];
     }
