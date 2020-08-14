@@ -28,3 +28,4 @@ out
 log
 target
 screenshot.png
+src/main/resources/config.properties
