@@ -22,7 +22,7 @@ public class DefaultCommand {
         return entity;
     }
 
-    public boolean isSecondUser() {
+    public boolean isNotSecondUser() {
         return getEntity().getSecondUser() == null;
     }
 }

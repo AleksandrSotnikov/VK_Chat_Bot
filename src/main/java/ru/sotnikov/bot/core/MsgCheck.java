@@ -33,13 +33,16 @@ public class MsgCheck {
                                 new Say(entity).sayOnline();
                             break;
                     }
+            case "ударить":
+                    new Say(entity).sayHit();
+                break;
             case "курс":
                     new CourseBitcoin(entity).getCourse();
                 break;
             case "название":
                     new ReName(entity).newName();
                 break;
-            case "копать":
+           /* case "копать":
                 if (entity.getPeerId() == 2000000007)
                     jail = new MinerKick(entity, jail).minerDefend();
                 break;
@@ -56,7 +59,7 @@ public class MsgCheck {
                         jail = new CaseKick(entity, jail).caseDefend();
                 }
                 break;
-            case "кнопки":
+           /* case "кнопки":
                 if ((entity.getTextMessageSplit(1).toLowerCase().equals("вкл") || entity.getTextMessageSplit(1).toLowerCase().equals("включить")) && entity.getPeerId() == 2000000007) {
                     String msg = "https://api.vk.com/method/messages.send?peer_id=2000000310&message="
                             .concat("пред%20")
@@ -73,7 +76,7 @@ public class MsgCheck {
                             .concat("&v=5.38&access_token=").concat(entity.getAccessTokens());
                     getJSON(msg);
                 }
-                break;
+                break;*/
             case "test":
                 if (entity.getFirstUser().getId() == 383119183) {
                     new Say(entity).sendMessage("test");
