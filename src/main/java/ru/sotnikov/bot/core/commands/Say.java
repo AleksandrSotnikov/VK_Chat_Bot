@@ -36,7 +36,6 @@ public class Say extends DefaultCommand {
                .contains("id");
     }
 
-    //RolePlay [id546127280|𝙸𝚖𝚙𝚎𝚛𝚊𝚝𝚘𝚛 𝚖𝚜𝚝𝚒𝚝𝚎lе𝚒]
     public void sayHit(){
         msg = msg.concat(getEntity().getFirstUser().getFirstNameID().concat("ударил "));
         if(isNotSecondUser()){
