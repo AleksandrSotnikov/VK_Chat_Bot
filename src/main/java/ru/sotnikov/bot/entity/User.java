@@ -25,7 +25,7 @@ public class User {
     }
 
     public String getFirstNameID() {
-        return "@".concat("id").concat(String.valueOf(getId())).concat("(").concat(getFirstName()).concat("), ");
+        return "@".concat("id").concat(String.valueOf(getId())).concat("(").concat(getFirstName()).concat(") ");
     }
 
     public String getLastName() {
