@@ -37,124 +37,45 @@ public class Say extends DefaultCommand {
     }
 
     public void sayHit(){
-        msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat("ударил(а) "));
-        if(isNotSecondUser()){
-            if(getEntity().getTextMessageSplit().length>1){
-                if(isContainsID()){
-                    msg = msg.concat(getEntity().getTextMessageSplit(1));
-                }else{
-                   msg = msg.concat("неизвестую цель");
-                }
-            }else{
-                msg = msg.concat("пустоту");
-            }
-        }else {
-            msg = msg.concat(getEntity().getSecondUser().getFirstNameID());
-        }
-        sendMessage(msg+"👊");
+        sayRPCommand("ударил(а) ","неизвестую цель","пустоту","👊");
     }
     public void sayKiss(){
-        msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat("поцеловал(а) "));
-        if(isNotSecondUser()){
-            if(getEntity().getTextMessageSplit().length>1){
-                if(isContainsID()){
-                    msg = msg.concat(getEntity().getTextMessageSplit(1));
-                }else{
-                    msg = msg.concat("неизвестую цель");
-                }
-            }else{
-                msg = msg.concat("воздух");
-            }
-        }else {
-            msg = msg.concat(getEntity().getSecondUser().getFirstNameID());
-        }
-        sendMessage(msg+"😘");
+        sayRPCommand("поцеловал(а) ","неизвестую цель","воздух","😘");
     }
     public void sayMurder(){
-        msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat("убил(а) "));
-        if(isNotSecondUser()){
-            if(getEntity().getTextMessageSplit().length>1){
-                if(isContainsID()){
-                    msg = msg.concat(getEntity().getTextMessageSplit(1));
-                }else{
-                    msg = msg.concat("неизвестую цель");
-                }
-            }else{
-                msg = msg.concat("муху");
-            }
-        }else {
-            msg = msg.concat(getEntity().getSecondUser().getFirstNameID());
-        }
-        sendMessage(msg+"🤡🔪");
+        sayRPCommand("убил(а) ","неизвестую цель","муху","\uD83E\uDD21\uD83D\uDD2A");
     }
     public void sayRape(){
-        msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat("надругался(ась) над "));
-        if(isNotSecondUser()){
-            if(getEntity().getTextMessageSplit().length>1){
-                if(isContainsID()){
-                    msg = msg.concat(getEntity().getTextMessageSplit(1));
-                }else{
-                    msg = msg.concat("неизвестую цель");
-                }
-            }else{
-                msg = msg.concat("руку");
-            }
-        }else {
-            msg = msg.concat(getEntity().getSecondUser().getFirstNameID());
-        }
-        sendMessage(msg+"👉👌😁");
+        sayRPCommand("надругался(ась) над ","неизвестной целью","рукой","\uD83D\uDC49\uD83D\uDC4C\uD83D\uDE01");
     }
     public void saySex(){
-        msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat("принудил(а) к жесткому интиму "));
-        if(isNotSecondUser()){
-            if(getEntity().getTextMessageSplit().length>1){
-                if(isContainsID()){
-                    msg = msg.concat(getEntity().getTextMessageSplit(1));
-                }else{
-                    msg = msg.concat("неизвестую цель");
-                }
-            }else{
-                msg = msg.concat("бутылку");
-            }
-        }else {
-            msg = msg.concat(getEntity().getSecondUser().getFirstNameID());
-        }
-        sendMessage(msg+"👉👌");
+        sayRPCommand("принудил(а) к жесткому интиму ","неизвестую цель","бутылку","\uD83D\uDC49\uD83D\uDC4C");
     }
     public void sayBurt(){
-        msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat("сжёг(сожгла) "));
-        if(isNotSecondUser()){
-            if(getEntity().getTextMessageSplit().length>1){
-                if(isContainsID()){
-                    msg = msg.concat(getEntity().getTextMessageSplit(1));
-                }else{
-                    msg = msg.concat("неизвестую цель");
-                }
-            }else{
-                msg = msg.concat("дрова в печке");
-            }
-        }else {
-            msg = msg.concat(getEntity().getSecondUser().getFirstNameID());
-        }
-        sendMessage(msg+"🔥🌚");
+        sayRPCommand("сжёг(сожгла) ","неизвестую цель","дрова в печке","🔥🌚");
     }
     public void sayShake(){
-        msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat("пожал(а) руку "));
+        sayRPCommand("пожал(а) руку ","непонятно кому)","незнакомцу","🤝");
+    }
+
+    public void sayRPCommand(String first,String second,String three,String four){
+        msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat(first));
         if(isNotSecondUser()){
             if(getEntity().getTextMessageSplit().length>1){
                 if(isContainsID()){
                     msg = msg.concat(getEntity().getTextMessageSplit(1));
                 }else{
-                    msg = msg.concat("непонятно кому)");
+                    msg = msg.concat(second);
                 }
             }else{
-                msg = msg.concat("незнакомцу");
+                msg = msg.concat(three);
             }
         }else {
             msg = msg.concat(getEntity().getSecondUser().getFirstNameID());
         }
-        sendMessage(msg+"🤝");
+        sendMessage(msg + four);
     }
+
     public void Command() {
         sendMessage("https://sites.google.com/view/dayandnight0");
     }
