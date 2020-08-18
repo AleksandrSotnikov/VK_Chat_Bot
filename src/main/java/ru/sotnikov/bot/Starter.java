@@ -110,7 +110,7 @@ public class Starter {
             if (event.getMessage().getText().toLowerCase().startsWith("!репорт")||event.getMessage().getText().toLowerCase().startsWith("репорт")) {
                 new Message()
                         .peerId(2000000009)
-                        .text("@" + "id" + event.getMessage().getFromId() + "(People), " + event.getMessage().getText().substring(event.getMessage().getText().indexOf("т")))
+                        .text("@" + "id" + event.getMessage().getFromId() + "(People), " + event.getMessage().getText().substring(event.getMessage().getText().indexOf("т")+1))
                         .sendFrom(vkApiClient)
                         .execute();
                 return;
