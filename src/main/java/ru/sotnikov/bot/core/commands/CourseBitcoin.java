@@ -19,6 +19,6 @@ public class CourseBitcoin extends DefaultCommand {
         } catch (IOException e) {
             course = "Не удалось получить текущий курс";
         }
-        sendMessage(getEntity().getFirstUser().getFirstNameID().concat(course));
+        sendMessage(getEntity().getFirstUser().getFirstNameIDs().concat(course));
     }
 }

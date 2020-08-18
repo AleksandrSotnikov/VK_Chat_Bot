@@ -12,20 +12,20 @@ public class Say extends DefaultCommand {
 
     public void testSay() {
         if (isNotSecondUser())
-            msg = msg.concat(getEntity().getFirstUser().getFirstName().concat(", Привет"));
+            msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat("Привет"));
         else
-            msg = msg.concat(getEntity().getFirstUser().getFirstName()).concat(", переслал(а) сообщение ")
-                    .concat(getEntity().getSecondUser().getFirstName());
+            msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs()).concat("переслал(а) сообщение ")
+                    .concat(getEntity().getSecondUser().getFirstNameID());
         sendMessage(msg);
     }
 
     public void sayAll() {
-        msg = msg.concat(getEntity().getFirstUser().getFirstNameID()).concat("позвал(а) всех - @all");
+        msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs()).concat("позвал(а) всех - @all");
         sendMessage(msg);
     }
 
     public void sayOnline() {
-        msg = msg.concat(getEntity().getFirstUser().getFirstNameID()).concat("позвал(а) всех, кто находился онлайн - @online");
+        msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs()).concat("позвал(а) всех, кто находился онлайн - @online");
         sendMessage(msg);
     }
 
@@ -37,7 +37,7 @@ public class Say extends DefaultCommand {
     }
 
     public void sayHit(){
-        msg = msg.concat(getEntity().getFirstUser().getFirstNameID().concat("ударил(а) "));
+        msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat("ударил(а) "));
         if(isNotSecondUser()){
             if(getEntity().getTextMessageSplit().length>1){
                 if(isContainsID()){
@@ -54,7 +54,7 @@ public class Say extends DefaultCommand {
         sendMessage(msg+"👊");
     }
     public void sayKiss(){
-        msg = msg.concat(getEntity().getFirstUser().getFirstNameID().concat("поцеловал(а) "));
+        msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat("поцеловал(а) "));
         if(isNotSecondUser()){
             if(getEntity().getTextMessageSplit().length>1){
                 if(isContainsID()){
@@ -71,7 +71,7 @@ public class Say extends DefaultCommand {
         sendMessage(msg+"😘");
     }
     public void sayMurder(){
-        msg = msg.concat(getEntity().getFirstUser().getFirstNameID().concat("убил(а) "));
+        msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat("убил(а) "));
         if(isNotSecondUser()){
             if(getEntity().getTextMessageSplit().length>1){
                 if(isContainsID()){
@@ -88,7 +88,7 @@ public class Say extends DefaultCommand {
         sendMessage(msg+"🤡🔪");
     }
     public void sayRape(){
-        msg = msg.concat(getEntity().getFirstUser().getFirstNameID().concat("надругался(ась) над "));
+        msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat("надругался(ась) над "));
         if(isNotSecondUser()){
             if(getEntity().getTextMessageSplit().length>1){
                 if(isContainsID()){
@@ -105,7 +105,7 @@ public class Say extends DefaultCommand {
         sendMessage(msg+"👉👌😁");
     }
     public void saySex(){
-        msg = msg.concat(getEntity().getFirstUser().getFirstNameID().concat("принудил(а) к жесткому интиму "));
+        msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat("принудил(а) к жесткому интиму "));
         if(isNotSecondUser()){
             if(getEntity().getTextMessageSplit().length>1){
                 if(isContainsID()){
@@ -122,7 +122,7 @@ public class Say extends DefaultCommand {
         sendMessage(msg+"👉👌");
     }
     public void sayBurt(){
-        msg = msg.concat(getEntity().getFirstUser().getFirstNameID().concat("сжёг(сожгла) "));
+        msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat("сжёг(сожгла) "));
         if(isNotSecondUser()){
             if(getEntity().getTextMessageSplit().length>1){
                 if(isContainsID()){
@@ -139,7 +139,7 @@ public class Say extends DefaultCommand {
         sendMessage(msg+"🔥🌚");
     }
     public void sayShake(){
-        msg = msg.concat(getEntity().getFirstUser().getFirstNameID().concat("пожал(а) руку "));
+        msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat("пожал(а) руку "));
         if(isNotSecondUser()){
             if(getEntity().getTextMessageSplit().length>1){
                 if(isContainsID()){

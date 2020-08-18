@@ -9,12 +9,12 @@ public class ReName extends DefaultCommand {
         super(entity);
     }
 
-    public String newName() {
+    public void newName() {
         getEntity().getVkApiClient().call("messages.editChat",
                 Parameters.of("chat_id",
                         String.valueOf(getEntity().getPeerId() - 2000000000),
                         "title", getEntity().getTextMessage().substring(8)),
                 false);
-        return "Название беседы изменено";
+        sendMessage( getEntity().getFirstUser().getFirstNameID() + "Название беседы было изменено");
     }
 }
