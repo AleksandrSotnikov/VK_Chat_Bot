@@ -52,9 +52,12 @@ public class MsgCheck {
             case "пожать":
                 switch (entity.getTextMessageSplit(1).toLowerCase()) {
                     case "руку":
-                        new Say(entity).sayShake();
+                            new Say(entity).sayShake();
                         break;
-                }
+                    case "лапу":
+                            new Say(entity).sayShake();
+                        break;
+                    }
                 break;
             case "команды":
                 new Say(entity).Command();
