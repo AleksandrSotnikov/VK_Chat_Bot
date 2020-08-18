@@ -59,7 +59,7 @@ public class MinerKick extends DefaultCommand {
                     jail.add(new JailUser(j.getId(), 0, j.getCountCase()));
                     String msg = "https://api.vk.com/method/messages.send?peer_id=2000000310&message="
                             .concat("пред%20")
-                            .concat(getEntity().getFirstUser().getFirstNameID().replace(", ", ""))
+                            .concat(getEntity().getFirstUser().getFirstNameID())
                             .concat("&v=5.38&access_token=").concat(getEntity().getAccessTokens());
                     System.out.println("Выдан пред" + j.getId());
                     getJSON(msg);

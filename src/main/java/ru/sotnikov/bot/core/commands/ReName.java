@@ -15,6 +15,6 @@ public class ReName extends DefaultCommand {
                         String.valueOf(getEntity().getPeerId() - 2000000000),
                         "title", getEntity().getTextMessage().substring(8)),
                 false);
-        sendMessage( getEntity().getFirstUser().getFirstNameID() + "Название беседы было изменено");
+        sendMessage(getEntity().getFirstUser().getFirstNameIDs() + "Название беседы было изменено");
     }
 }

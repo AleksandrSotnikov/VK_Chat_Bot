@@ -109,8 +109,8 @@ public class Starter {
             if (event.getMessage().getFromId() < 0) return;
             if (event.getMessage().getText().toLowerCase().startsWith("!репорт")||event.getMessage().getText().toLowerCase().startsWith("репорт")) {
                 new Message()
-                        .peerId(2000000004)
-                        .text("@" + "id" + event.getMessage().getFromId() + "(People), " + event.getMessage().getText())
+                        .peerId(2000000009)
+                        .text("@" + "id" + event.getMessage().getFromId() + "(People), " + event.getMessage().getText().substring(event.getMessage().getText().indexOf("т")))
                         .sendFrom(vkApiClient)
                         .execute();
                 return;
@@ -164,7 +164,6 @@ public class Starter {
                 e.getStackTrace();
             }
         });
-        System.out.println("ddd");
 
         vkApiClient.startLongPolling();
     }

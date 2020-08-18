@@ -54,7 +54,7 @@ public class CaseKick extends DefaultCommand {
                 jail.remove(jails);
                 if (j.getCountCase() < 2) {
                     jail.add(new JailUser(j.getId(), j.getCountMine(), j.getCountCase() + 1));
-                    sendMessage(getEntity().getFirstUser().getFirstNameID() + " В данной беседе запрещено открывать кейс 1");
+                    sendMessage(getEntity().getFirstUser().getFirstNameIDs() + " В данной беседе запрещено открывать кейс 1");
                 } else {
                     jail.add(new JailUser(j.getId(), j.getCountMine(), 0));
                     String msg = "https://api.vk.com/method/messages.send?peer_id=2000000310&message="
