@@ -60,8 +60,11 @@ public class Say extends DefaultCommand {
     public void sayDrown(){
         sayRPCommand("утопил(а) ","","камень ","🌊🤡");
     }
-    public void sayGive_five(){
+    public void sayGiveFive(){
         sayRPCommand("дал(а) пять ","","себе ","🖐");
+    }
+    public void sayGiveSix(){
+        sayRPCommand("дал(а) шесть?!?!?! ","","себе ","🖐");
     }
     public void sayScare(){
         sayRPCommand("испугал(а) ","","кошку ","😱");
@@ -102,6 +105,7 @@ public class Say extends DefaultCommand {
     public void sayCongratulate(){
         sayRPCommand("поздравил(а) ","","семя родного(ую) ","🎁🎉🥳");
     }
+
     public void sayRPCommand(String first,String second,String three,String four){
         msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat(first));
         if(isNotSecondUser()){

@@ -3,12 +3,14 @@ package ru.sotnikov.bot.core;
 import ru.sotnikov.bot.core.commands.*;
 import ru.sotnikov.bot.entity.Entity;
 import ru.sotnikov.bot.entity.JailUser;
+import ru.sotnikov.bot.entity.PunishmentUser;
 
 import java.util.ArrayList;
 
 public class MsgCheck {
     private static final ArrayList<String> command = new ArrayList<>();
-    private static ArrayList<JailUser> jail = new ArrayList<>();
+    //private static ArrayList<JailUser> jail = new ArrayList<>();
+    private static ArrayList<PunishmentUser> punish = new ArrayList<>();
 
     public MsgCheck() {
     }
@@ -53,9 +55,13 @@ public class MsgCheck {
             case "дать":
                 switch (entity.getTextMessageSplit(1).toLowerCase()) {
                     case "пять":
-                        new Say(entity).sayGive_five();
-                        break;}
+                            new Say(entity).sayGiveFive();
                         break;
+                    case "шесть":
+                            new Say(entity).sayGiveSix();
+                        break;
+                }
+                break;
             case "испугать":
                 new Say(entity).sayScare();
                 break;
@@ -126,6 +132,10 @@ public class MsgCheck {
             case "кик":
                 if (entity.getFirstUser().getId() == 383119183|| entity.getFirstUser().getId() == 301418543)
                     new Punishment(entity).kick();
+                break;
+            case "пред":
+                if (entity.getFirstUser().getId() == 383119183|| entity.getFirstUser().getId() == 301418543)
+                   punish.add(new Punishment(entity).punish(punish).updatePunishmentCount());
                 break;
             case "test":
                 if (entity.getFirstUser().getId() == 383119183|| entity.getFirstUser().getId() == 301418543) {
