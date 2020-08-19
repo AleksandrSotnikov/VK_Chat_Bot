@@ -37,27 +37,71 @@ public class Say extends DefaultCommand {
     }
 
     public void sayHit(){
-        sayRPCommand("ударил(а) ","неизвестую цель","пустоту","👊");
+        sayRPCommand("ударил(а) ","","пустоту","👊");
     }
     public void sayKiss(){
-        sayRPCommand("поцеловал(а) ","неизвестую цель","воздух","😘");
+        sayRPCommand("поцеловал(а) ","","воздух","😘");
     }
     public void sayMurder(){
-        sayRPCommand("убил(а) ","неизвестую цель","муху","\uD83E\uDD21\uD83D\uDD2A");
+        sayRPCommand("убил(а) ","","муху","\uD83E\uDD21\uD83D\uDD2A");
     }
     public void sayRape(){
-        sayRPCommand("надругался(ась) над ","неизвестной целью","рукой","\uD83D\uDC49\uD83D\uDC4C\uD83D\uDE01");
+        sayRPCommand("надругался(ась) над ","","рукой","\uD83D\uDC49\uD83D\uDC4C\uD83D\uDE01");
     }
     public void saySex(){
-        sayRPCommand("принудил(а) к жесткому интиму ","неизвестую цель","бутылку","\uD83D\uDC49\uD83D\uDC4C");
+        sayRPCommand("принудил(а) к жесткому интиму ","","бутылку","\uD83D\uDC49\uD83D\uDC4C");
     }
     public void sayBurt(){
-        sayRPCommand("сжёг(сожгла) ","неизвестую цель","дрова в печке","🔥🌚");
+        sayRPCommand("сжёг(сожгла) ","","дрова в печке","🔥🌚");
     }
     public void sayShake(){
-        sayRPCommand("пожал(а) руку ","непонятно кому)","незнакомцу","🤝");
+        sayRPCommand("пожал(а) руку ","","незнакомцу","🤝");
     }
-
+    public void sayDrown(){
+        sayRPCommand("утопил(а) ","","камень ","🌊🤡");
+    }
+    public void sayGive_five(){
+        sayRPCommand("дал(а) пять ","","себе ","🖐");
+    }
+    public void sayScare(){
+        sayRPCommand("испугал(а) ","","кошку ","😱");
+    }
+    public void sayApologize(){
+        sayRPCommand("извинился(ась) перед ","","зеркалом ","🙏");
+    }
+    public void sayKus(){
+        sayRPCommand("укусил(а) ","","себя за руку ","😬😝");
+    }
+    public void sayCastrate(){
+        sayRPCommand("кастрировал(а) ","","бедного котика ","✂😎");
+    }
+    public void saySniff(){
+        sayRPCommand("понюхал(а) ","","горлышко бутылки ","👃");
+    }
+    public void sayGive_myself(){
+        sayRPCommand("отдался(ась) ","","воздуху ","🔞😏");
+    }
+    public void sayPraise(){
+        sayRPCommand("похвалил(а) ","","себя лучшего(ую) ","☺");
+    }
+    public void sayPoison(){
+        sayRPCommand("отравил(а) ","","демона ","🍄🐍");
+    }
+    public void sayHug(){
+        sayRPCommand("обнял(а) ","","кошечку ","🤗");
+    }
+    public void sayLick(){
+        sayRPCommand("лизнул(а) ","","ножечку ","👅");
+    }
+    public void sayTouch(){
+        sayRPCommand("потрогал(а) ","","себя за 5-ю точку ","✋");
+    }
+    public void sayPin(){
+        sayRPCommand("прижал(а) ","","подушку к себе ","👐");
+    }
+    public void sayCongratulate(){
+        sayRPCommand("поздравил(а) ","","семя родного(ую) ","🎁🎉🥳");
+    }
     public void sayRPCommand(String first,String second,String three,String four){
         msg = msg.concat(getEntity().getFirstUser().getFirstNameIDs().concat(first));
         if(isNotSecondUser()){
@@ -79,6 +123,7 @@ public class Say extends DefaultCommand {
     public void Command() {
         sendMessage("https://sites.google.com/view/dayandnight0");
     }
+
 
 
 }

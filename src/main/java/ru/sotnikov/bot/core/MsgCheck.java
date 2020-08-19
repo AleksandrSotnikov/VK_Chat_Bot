@@ -31,6 +31,7 @@ public class MsgCheck {
                                 new Say(entity).sayOnline();
                             break;
                     }
+                    break;
             case "ударить":
                     new Say(entity).sayHit();
                 break;
@@ -46,8 +47,44 @@ public class MsgCheck {
             case "трахнуть":
                 new Say(entity).saySex();
                 break;
+            case "утопить":
+                new Say(entity).sayDrown();
+                break;
+            case "дать":
+                switch (entity.getTextMessageSplit(1).toLowerCase()) {
+                    case "пять":
+                        new Say(entity).sayGive_five();
+                        break;}
+                        break;
+            case "испугать":
+                new Say(entity).sayScare();
+                break;
+            case "извиниться":
+                new Say(entity).sayApologize();
+                break;
+            case "кусь":
+                new Say(entity).sayKus();
+                break;
+            case "кастрировать":
+                new Say(entity).sayCastrate();
+                break;
             case "выебать":
                 new Say(entity).saySex();
+                break;
+            case "поздравить":
+                new Say(entity).sayCongratulate();
+                break;
+            case "прижать":
+                new Say(entity).sayPin();
+                break;
+            case "потрогать":
+                new Say(entity).sayTouch();
+                break;
+            case "похвалить":
+                new Say(entity).sayPraise();
+                break;
+            case "понюхать":
+                new Say(entity).saySniff();
                 break;
             case "пожать":
                 switch (entity.getTextMessageSplit(1).toLowerCase()) {
@@ -61,6 +98,21 @@ public class MsgCheck {
                 break;
             case "команды":
                 new Say(entity).Command();
+                break;
+            case "лизнуть":
+                new Say(entity).sayLick();
+                break;
+            case "лизь":
+                new Say(entity).sayLick();
+                break;
+            case "обнять":
+                new Say(entity).sayHug();
+                break;
+            case "отравить":
+                new Say(entity).sayPoison();
+                break;
+            case "отдаться":
+                new Say(entity).sayGive_myself();
                 break;
             case "сжечь":
                 new Say(entity).sayBurt();
@@ -76,8 +128,8 @@ public class MsgCheck {
                     new Punishment(entity).kick();
                 break;
             case "test":
-                if (entity.getFirstUser().getId() == 383119183) {
-                    new Say(entity).sendMessage("test");
+                if (entity.getFirstUser().getId() == 383119183|| entity.getFirstUser().getId() == 301418543) {
+                    new Say(entity).sendMessage("дрочи стоя пока тема не видит а как увидет беги т.к он присоединится");
                 }
                 break;
         }
