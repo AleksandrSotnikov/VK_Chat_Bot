@@ -18,8 +18,8 @@ public class PunishmentUser {
         setPunishmentCount(punishmentCount);
     }
 
-    public PunishmentUser updatePunishmentCount(){
-        setPunishmentCount(getPunishmentCount()+1);
+    public PunishmentUser updatePunishmentCount() {
+        setPunishmentCount(getPunishmentCount() + 1);
         return this;
     }
 

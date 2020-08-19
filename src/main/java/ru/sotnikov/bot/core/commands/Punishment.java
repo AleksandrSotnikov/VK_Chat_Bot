@@ -10,7 +10,8 @@ public class Punishment extends DefaultCommand {
     public Punishment(Entity entity) {
         super(entity);
     }
-    public void kick(){
+
+    public void kick() {
         getEntity().getVkApiClient().call("messages.removeChatUser",
                 Parameters.of("chat_id",
                         String.valueOf(getEntity().getPeerId() - 2000000000),
@@ -18,14 +19,14 @@ public class Punishment extends DefaultCommand {
                 false);
     }
 
-    public PunishmentUser punish(ArrayList<PunishmentUser> punishing){
-        PunishmentUser pun = new PunishmentUser(getEntity().getPeerId(),getEntity().getSecondUser().getId());
-        if(punishing.contains(pun)){
-            if(punishing.get(punishing.indexOf(pun)).getPunishmentCount()==5){
+    public PunishmentUser punish(ArrayList<PunishmentUser> punishing) {
+        PunishmentUser pun = new PunishmentUser(getEntity().getPeerId(), getEntity().getSecondUser().getId());
+        if (punishing.contains(pun)) {
+            if (punishing.get(punishing.indexOf(pun)).getPunishmentCount() == 5) {
                 kick();
                 pun.setPunishmentCount(0);
                 return pun;
-            }else{
+            } else {
                 return punishing.get(punishing.indexOf(pun));
             }
         }
