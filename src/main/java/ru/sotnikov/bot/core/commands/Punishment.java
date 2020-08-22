@@ -22,14 +22,19 @@ public class Punishment extends DefaultCommand {
     public PunishmentUser punish(ArrayList<PunishmentUser> punishing) {
         PunishmentUser pun = new PunishmentUser(getEntity().getPeerId(), getEntity().getSecondUser().getId());
         if (punishing.contains(pun)) {
-            if (punishing.get(punishing.indexOf(pun)).getPunishmentCount() == 5) {
+            pun = punishing.get(punishing.indexOf(pun));
+            if (pun.getPunishmentCount() == 2) {
                 kick();
+                sendMessage(pun.getPunishmentCount() + " kick");
                 pun.setPunishmentCount(0);
                 return pun;
             } else {
+                sendMessage(pun.getPunishmentCount() + " no kick");
                 return punishing.get(punishing.indexOf(pun));
             }
         }
+        pun.setPunishmentCount(1);
+        sendMessage(pun.getPunishmentCount() + " no const");
         return pun;
     }
 }

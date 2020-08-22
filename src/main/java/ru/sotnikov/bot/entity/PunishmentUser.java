@@ -18,8 +18,24 @@ public class PunishmentUser {
         setPunishmentCount(punishmentCount);
     }
 
-    public PunishmentUser updatePunishmentCount() {
-        setPunishmentCount(getPunishmentCount() + 1);
+    public PunishmentUser updatePunishmentCountPlus() {
+            setPunishmentCount(getPunishmentCount() + 1);
+        return this;
+    }
+
+    public PunishmentUser updatePunishmentCountMinus() {
+            if(getPunishmentCount()-1>0)
+            setPunishmentCount(getPunishmentCount() - 1);
+        return this;
+    }
+
+    public PunishmentUser updatePunishmentCountClear() {
+            setPunishmentCount(0);
+        return this;
+    }
+
+    public PunishmentUser updatePunishmentCountImun() {
+            setPunishmentCount(Integer.MIN_VALUE);
         return this;
     }
 

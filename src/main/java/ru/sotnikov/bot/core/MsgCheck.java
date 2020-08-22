@@ -137,7 +137,22 @@ public class MsgCheck {
                 break;
             case "пред":
                 if (entity.getFirstUser().getId() == 383119183 || entity.getFirstUser().getId() == 301418543)
-                    punish.add(new Punishment(entity).punish(punish).updatePunishmentCount());
+                    try {
+                        switch (entity.getTextMessageSplit(1).toLowerCase()) {
+                            case "снять":
+                                punish.add(new Punishment(entity).punish(punish).updatePunishmentCountMinus());
+                                break;
+                            case "сброс":
+                                punish.add(new Punishment(entity).punish(punish).updatePunishmentCountClear());
+                                break;
+                            case "имун":
+                                punish.add(new Punishment(entity).punish(punish).updatePunishmentCountImun());
+                                break;
+                        }
+                        return;
+                    }catch (ArrayIndexOutOfBoundsException e){
+                        punish.add(new Punishment(entity).punish(punish).updatePunishmentCountPlus());
+                    }
                 break;
             case "test":
                 if (entity.getFirstUser().getId() == 383119183 || entity.getFirstUser().getId() == 301418543) {
