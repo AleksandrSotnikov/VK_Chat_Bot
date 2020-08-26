@@ -40,6 +40,7 @@ public class Starter {
         String pathToFile = "src/main/resources/config.properties";
         Properties properties = new Properties();
         File file = new File(pathToFile);
+        System.out.println(new File("src/main/resources").mkdir());
         FileWriter fileWriter;
         BufferedReader fileReader;
         try {
